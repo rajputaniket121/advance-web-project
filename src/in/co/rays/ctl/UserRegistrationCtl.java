@@ -1,12 +1,19 @@
 package in.co.rays.ctl;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import in.co.rays.bean.UserBean;
+import in.co.rays.model.UserModel;
 
 @WebServlet("/UserRegistrationCtl")
 public class UserRegistrationCtl extends HttpServlet{
@@ -28,6 +35,8 @@ public class UserRegistrationCtl extends HttpServlet{
 		String mobileNo = req.getParameter("mobileNo");
 		String roleId = req.getParameter("roleId");
 		String gender = req.getParameter("gender");
+		String createdBy = req.getParameter("createdBy");
+		String modifiedBy = req.getParameter("modifiedBy");
 		
 		System.out.println("First Name : "+firstName);
 		System.out.println("last Name : "+lastName);
@@ -37,6 +46,34 @@ public class UserRegistrationCtl extends HttpServlet{
 		System.out.println("Mobile No : "+mobileNo);
 		System.out.println("Role Id : "+roleId);
 		System.out.println("Gender : "+gender);
+		System.out.println("Modified By : "+createdBy);
+		System.out.println("Created By : "+modifiedBy);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		UserBean bean = new UserBean();
+		bean.setFirstName(firstName);
+		bean.setLastName(lastName);
+		bean.setLogin(loginId);
+		bean.setPassword(password);
+		try {
+			bean.setDob(sdf.parse(dob));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		bean.setMobileNo(mobileNo);
+		bean.setGender(gender);
+		bean.setCreatedBy(createdBy);
+		bean.setModifiedBy(modifiedBy);
+		bean.setCreatedDateTime(new Timestamp(new Date().getTime()));
+		bean.setModifiedDateTime(new Timestamp(new Date().getTime()));
+		
+		UserModel model = new UserModel();
+		try {
+			model.add(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		resp.sendRedirect("UserRegistrationView.jsp");
 	}

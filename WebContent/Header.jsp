@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Advance-web-project</title>
 </head>
 <body>
-	<h1>Welcome</h1>
+	<div>
+		<h3>Hi Aniket!</h3>
+		<br> <b><a href="WelcomeCtl">Welcome</a></b> | <b><a
+			href="LoginCtl">Login</a></b>
+		<hr>
+
+		<br>
+		<br>
+	</div>
 </body>
 </html>

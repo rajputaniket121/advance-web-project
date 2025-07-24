@@ -7,6 +7,7 @@
 <title>User Registration</title>
 </head>
 <body>
+<%@ include file="Header.jsp" %>
 	<div align="center">
 	<h1>User Registration</h1>
 		<form action="UserRegistrationCtl" method="post">
@@ -44,8 +45,17 @@
 					<td><input type="text" name="gender"></input></td>
 				</tr>
 				<tr>
+					<th>Created By :</th>
+					<td><input type="text" name="createdBy"></input></td>
+				</tr>
+				<tr>
+					<th>Modified By :</th>
+					<td><input type="text" name="modifiedBy"></input></td>
+				</tr>
+				<tr></tr>
+				<tr>
 					<th></th>
-					<td><input type="submit" value="signUp"></input></td>
+					<td align="center"><input type="submit" value="signUp"></input></td>
 				</tr>
 			</table>
 		</form>
