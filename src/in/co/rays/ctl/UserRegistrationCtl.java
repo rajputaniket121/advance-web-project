@@ -62,6 +62,7 @@ public class UserRegistrationCtl extends HttpServlet{
 			e.printStackTrace();
 		}
 		bean.setMobileNo(mobileNo);
+		bean.setRoleId(Long.parseLong(roleId));
 		bean.setGender(gender);
 		bean.setCreatedBy(createdBy);
 		bean.setModifiedBy(modifiedBy);

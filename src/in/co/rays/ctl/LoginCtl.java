@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.co.rays.bean.UserBean;
+import in.co.rays.model.UserModel;
+
 @WebServlet("/LoginCtl")
 public class LoginCtl  extends HttpServlet{
 	
@@ -27,6 +30,18 @@ public class LoginCtl  extends HttpServlet{
 		
 		if(operation.equalsIgnoreCase("signIn")) {
 			System.out.println("singin clicked");
+			UserModel model = new UserModel();
+			 try {
+				UserBean bean = model.findByLogin(loginId);
+				if (bean!=null && bean.getLogin().equals(loginId)&& bean.getPassword().equals(password)) {
+					req.setAttribute("user", bean);
+					resp.sendRedirect("WelcomeCtl");
+					return;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else if (operation.equalsIgnoreCase("signUp")) {
 			System.out.println("singup clicked");
 			resp.sendRedirect("UserRegistrationCtl");
