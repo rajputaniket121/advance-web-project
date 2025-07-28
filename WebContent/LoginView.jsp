@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +7,22 @@
 <title>Login Page</title>
 </head>
 <body>
-<%@ include file="Header.jsp" %>
-<div align="center">
-	<h1>User Registration</h1>
+	<%@ include file="Header.jsp"%>
+	<div align="center">
+		<%
+		String error = (String) request.getAttribute("error");
+		%>
+		<h1>User Login</h1>
+
+		<%
+		if (error != null) {
+		%>
+		<h3>
+			<font color="Red"><%=error%></font>
+		</h3>
+		<%
+		}
+		%>
 		<form action="LoginCtl" method="post">
 			<table>
 				<tr>
@@ -24,10 +37,9 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td align="center">
-					<input type="submit" value="signIn" name ="operation"></input>
-					<input type="submit" value="signUp" name ="operation"></input>
-					</td>
+					<td align="center"><input type="submit" value="signIn"
+						name="operation"></input> <input type="submit" value="signUp"
+						name="operation"></input></td>
 				</tr>
 			</table>
 		</form>

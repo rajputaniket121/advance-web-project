@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,9 +51,9 @@ public class UserRegistrationCtl extends HttpServlet{
 		System.out.println("Gender : "+gender);
 		System.out.println("Modified By : "+createdBy);
 		System.out.println("Created By : "+modifiedBy);
-		
+		LocalDate date = LocalDate.parse(dob,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		System.out.println("date from local date "+date);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
 		UserBean bean = new UserBean();
 		bean.setFirstName(firstName);
 		bean.setLastName(lastName);
@@ -72,10 +75,13 @@ public class UserRegistrationCtl extends HttpServlet{
 		UserModel model = new UserModel();
 		try {
 			model.add(bean);
+			req.setAttribute("success", "User Added Successfully...!!!");
 		} catch (Exception e) {
+			req.setAttribute("error", "User Already Exists....!!!");
 			e.printStackTrace();
 		}
 		
-		resp.sendRedirect("UserRegistrationView.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("UserRegistrationView.jsp");
+		rd.forward(req, resp);
 	}
 }

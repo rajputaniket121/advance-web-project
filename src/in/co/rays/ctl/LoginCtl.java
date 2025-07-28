@@ -2,6 +2,7 @@ package in.co.rays.ctl;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,43 +13,46 @@ import in.co.rays.bean.UserBean;
 import in.co.rays.model.UserModel;
 
 @WebServlet("/LoginCtl")
-public class LoginCtl  extends HttpServlet{
-	
+public class LoginCtl extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("login get");
 		resp.sendRedirect("LoginView.jsp");
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("login post");
-		
+
 		String loginId = req.getParameter("loginId");
 		String password = req.getParameter("password");
 		String operation = req.getParameter("operation");
-		
-		if(operation.equalsIgnoreCase("signIn")) {
+
+		if (operation.equalsIgnoreCase("signIn")) {
 			System.out.println("singin clicked");
 			UserModel model = new UserModel();
-			 try {
-				UserBean bean = model.findByLogin(loginId);
-				if (bean!=null && bean.getLogin().equals(loginId)&& bean.getPassword().equals(password)) {
+			try {
+				UserBean bean = model.authenticate(loginId, password);
+				if (bean != null) {
 					req.setAttribute("user", bean);
-					resp.sendRedirect("WelcomeCtl");
+					RequestDispatcher rd = req.getRequestDispatcher("WelcomeView.jsp");
+					rd.forward(req, resp);
 					return;
+				} else {
+					req.setAttribute("error", "Login & Password is Incorrect");
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if (operation.equalsIgnoreCase("signUp")) {
+		} else if (operation.equalsIgnoreCase("signUp")) {
 			System.out.println("singup clicked");
 			resp.sendRedirect("UserRegistrationCtl");
 			return;
 		}
 		
-		resp.sendRedirect("LoginView.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("LoginView.jsp");
+		rd.forward(req, resp);
 	}
 
 }
