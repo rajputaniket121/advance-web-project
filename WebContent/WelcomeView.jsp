@@ -8,11 +8,8 @@
 <title>Advance-web-project</title>
 </head>
 <body>
-<% UserBean bean = (UserBean) request.getAttribute("user"); %>
+<%@ include file="Header.jsp" %>
 	<div align="center">
-	<% if(bean!=null) {%>
-	<h2><font color="Red"><%= bean.getFirstName() +" "+bean.getLastName() %></font></h2>
-	<%} %>
 	<h1>Welcome To Advance Web Project</h1>
 	</div>
 </body>

@@ -10,10 +10,19 @@
 	<%@ include file="Header.jsp"%>
 	<div align="center">
 		<%
+		String success = (String) request.getAttribute("success");
 		String error = (String) request.getAttribute("error");
 		%>
 		<h1>User Login</h1>
-
+		<%
+		if (success != null) {
+		%>
+		<h3>
+			<font color="green"><%=success%></font>
+		</h3>
+		<%
+		}
+		%>
 		<%
 		if (error != null) {
 		%>
