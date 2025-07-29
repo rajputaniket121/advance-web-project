@@ -56,24 +56,8 @@
 					<td><input type="date" name="dob" style="width: 98%"></input></td>
 				</tr>
 				<tr>
-					<th>Mobile No :</th>
-					<td><input type="number" name="mobileNo"></input></td>
-				</tr>
-				<tr>
-					<th>Role Id :</th>
-					<td><input type="number" name="roleId"></input></td>
-				</tr>
-				<tr>
-					<th>Gender :</th>
-					<td><input type="text" name="gender"></input></td>
-				</tr>
-				<tr>
-					<th>Created By :</th>
-					<td><input type="text" name="createdBy"></input></td>
-				</tr>
-				<tr>
-					<th>Modified By :</th>
-					<td><input type="text" name="modifiedBy"></input></td>
+					<th>Address :</th>
+					<td><input type="text" name="address"></input></td>
 				</tr>
 				<tr></tr>
 				<tr>

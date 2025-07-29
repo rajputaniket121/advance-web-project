@@ -2,16 +2,20 @@ package in.co.rays.bean;
 
 import java.util.Date;
 
-public class UserBean extends BaseBean {
+public class UserBean {
+	private Long id;
 	private String firstName;
 	private String lastName;
-	private String login;
+	private String loginId;
 	private String password;
-	private String confirmPassword;
 	private Date dob;
-	private String mobileNo;
-	private Long roleId;
-	private String gender;
+	private String address;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -24,11 +28,11 @@ public class UserBean extends BaseBean {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getLogin() {
-		return login;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 	public String getPassword() {
 		return password;
@@ -36,43 +40,24 @@ public class UserBean extends BaseBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
 	public Date getDob() {
 		return dob;
 	}
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	public String getMobileNo() {
-		return mobileNo;
+	public String getAddress() {
+		return address;
 	}
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-	public Long getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	@Override
 	public String toString() {
-		return "UserBean [firstName=" + firstName + ", lastName=" + lastName + ", login=" + login + ", password="
-				+ password + ", confirmPassword=" + confirmPassword + ", dob=" + dob + ", mobileNo=" + mobileNo
-				+ ", roleId=" + roleId + ", gender=" + gender + "]";
+		return "UserBean [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", loginId=" + loginId
+				+ ", password=" + password + ", dob=" + dob + ", address=" + address + "]";
 	}
 	
 	
-	
+
 }
