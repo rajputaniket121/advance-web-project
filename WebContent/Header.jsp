@@ -17,7 +17,7 @@
 		<h3>
 			Hi
 			<%=user.getFirstName() + " " + user.getLastName()%></h3>
-			<br> <b><a href="#">AddUsers</a></b> 
+			<br> <b><a href="UserCtl">AddUsers</a></b> 
 			|
 			<b><a
 			href="UserListCtl">UserList</a></b>

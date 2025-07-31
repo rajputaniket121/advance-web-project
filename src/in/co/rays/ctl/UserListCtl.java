@@ -44,6 +44,8 @@ public class UserListCtl extends HttpServlet {
 		int pageSize = 5;
 		UserModel model = new UserModel();
 		pageNo = Integer.parseInt(req.getParameter("pageNo"));
+		String[] ids = req.getParameterValues("ids");
+		try {
 			if (op.equalsIgnoreCase("previous")) {
 				pageNo--;
 			}
@@ -51,6 +53,13 @@ public class UserListCtl extends HttpServlet {
 
 			}
 			if (op.equalsIgnoreCase("delete")) {
+				if(ids!=null && ids.length > 0) {
+					pageNo=1;
+					for (String id : ids) {
+						model.delete(Long.parseLong(id));
+					}
+				}
+				
 
 			}
 			if (op.equalsIgnoreCase("next")) {
@@ -62,14 +71,9 @@ public class UserListCtl extends HttpServlet {
 				bean.setFirstName(req.getParameter("firstName"));
 				String dob = req.getParameter("dob");
 				if(dob!=null && !dob.isEmpty()) {
-					try {
 						bean.setDob(sdf.parse(dob));
-					} catch (ParseException e) {
-						e.printStackTrace();
 					}
 				}
-			}
-		try {
 			List<UserBean> userList = model.search(bean, pageNo, pageSize);
 			req.setAttribute("userList", userList);
 			req.setAttribute("pageNo", pageNo);
