@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,10 +13,11 @@
 	String success = (String) request.getAttribute("success");
 	String error = (String) request.getAttribute("error");
 	UserBean bean = (UserBean) request.getAttribute("bean");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	%>
 	<div align="center">
 		<%
-		if (bean != null && bean.getId()>0) {
+		if(bean!=null && bean.getId()!=null){
 		%>
 		<h1>Update User</h1>
 		<%
@@ -47,6 +49,17 @@
 
 		<form action="UserCtl" method="post">
 			<table>
+				<%
+				if (bean != null && bean.getId()!=null) {
+				%>
+				<tr>
+					<th></th>
+					<td><input type="hidden" name="id"
+						value="<%=(bean != null) ? bean.getId() : ""%>"></input></td>
+				</tr>
+				<%
+				}
+				%>
 				<tr>
 					<th>First Name :</th>
 					<td><input type="text" name="firstName"
@@ -70,7 +83,7 @@
 				<tr>
 					<th>Date of Birth :</th>
 					<td><input type="date" name="dob" style="width: 98%"
-						value="<%=(bean != null) ? bean.getDob() : ""%>"></input></td>
+						value="<%=(bean != null) ? sdf.format(bean.getDob()) : ""%>"></input></td>
 				</tr>
 				<tr>
 					<th>Address :</th>
@@ -81,7 +94,7 @@
 				<tr>
 					<th></th>
 					<td align="center"><input type="submit"
-						value="<%=(bean != null) ? "update" : "save"%>" name="operation"></input></td>
+						value="<%=(bean != null && bean.getId()!=null) ? "update" : "save"%>" name="operation"></input></td>
 				</tr>
 			</table>
 		</form>

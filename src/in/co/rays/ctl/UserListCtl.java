@@ -48,32 +48,32 @@ public class UserListCtl extends HttpServlet {
 		try {
 			if (op.equalsIgnoreCase("previous")) {
 				pageNo--;
-			}
-			if (op.equalsIgnoreCase("add")) {
+			} else if (op.equalsIgnoreCase("add")) {
+				resp.sendRedirect("UserCtl");
+				return;
 
-			}
-			if (op.equalsIgnoreCase("delete")) {
-				if(ids!=null && ids.length > 0) {
-					pageNo=1;
+			} else if (op.equalsIgnoreCase("delete")) {
+				if (ids != null && ids.length > 0) {
+					pageNo = 1;
 					for (String id : ids) {
 						model.delete(Long.parseLong(id));
 					}
+					req.setAttribute("success", "User deleted Successfully..!!!");
+				}else {
+					req.setAttribute("error", "Select Atlest one Checkbox..!!!");
 				}
-				
 
-			}
-			if (op.equalsIgnoreCase("next")) {
+			} else if (op.equalsIgnoreCase("next")) {
 				pageNo++;
-			}
-			if (op.equalsIgnoreCase("search")) {
+			} else if (op.equalsIgnoreCase("search")) {
 				pageNo = 1;
 				bean = new UserBean();
 				bean.setFirstName(req.getParameter("firstName"));
 				String dob = req.getParameter("dob");
-				if(dob!=null && !dob.isEmpty()) {
-						bean.setDob(sdf.parse(dob));
-					}
+				if (dob != null && !dob.isEmpty()) {
+					bean.setDob(sdf.parse(dob));
 				}
+			}
 			List<UserBean> userList = model.search(bean, pageNo, pageSize);
 			req.setAttribute("userList", userList);
 			req.setAttribute("pageNo", pageNo);

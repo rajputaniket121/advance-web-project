@@ -70,16 +70,29 @@ public class UserCtl extends HttpServlet{
 			if(operation.equalsIgnoreCase("save")) {
 				try {
 					model.add(bean);
+					req.setAttribute("bean", bean);
 					req.setAttribute("success", "User Added Successfully..!!");
 				} catch (Exception e) {
-					req.setAttribute("error", e.getMessage());
+					req.setAttribute("bean", bean);
+					req.setAttribute("error", "Login id Already Exist...!!!");
+					e.printStackTrace();
 				}
 				
 			}
 			
 			if(operation.equalsIgnoreCase("update")) {
-				
-				
+				bean.setId(Long.parseLong(req.getParameter("id")));
+				try {
+					model.update(bean);
+					req.setAttribute("bean", bean);
+					bean = model.findByPk(bean.getId());
+					req.setAttribute("bean", bean);
+					req.setAttribute("success", "User Updated Successfully..!!");
+				} catch (Exception e) {
+					req.setAttribute("bean", bean);
+					req.setAttribute("error", "Login id Already Exist...!!!");
+					e.printStackTrace();
+				}
 			}
 			
 		}catch(Exception e){

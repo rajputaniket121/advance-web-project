@@ -15,9 +15,29 @@
 	int pageNo = (int) request.getAttribute("pageNo");
 	int index = ((pageNo -1) * 5 ) + 1 ;
 	Iterator<UserBean> it = userList.iterator();
+	String success = (String) request.getAttribute("success");
+	String error = (String) request.getAttribute("error");
 	%>
-	<div>
-		<h1 align="center">Users List</h1>
+	<div align="center">
+		<h1 >Users List</h1>
+		<%
+		if (success != null) {
+		%>
+		<h3>
+			<font color="green"><%=success%></font>
+		</h3>
+		<%
+		}
+		%>
+		<%
+		if (error != null) {
+		%>
+		<h3>
+			<font color="red"><%=error%></font>
+		</h3>
+		<%
+		}
+		%>
 		<form action="UserListCtl" method="post">
 			<div align="center">
 				<table>
@@ -62,7 +82,7 @@
 				</tr>
 				<%
 				}
-				} else {
+				} else if(userList.size()==0) {
 				%>
 				<tr style="width: 100%">
 					<td align="center" colspan="9"><font style="color: red"><b>No

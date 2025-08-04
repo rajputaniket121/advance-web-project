@@ -43,7 +43,7 @@ public class UserModel {
 
 	public void update(UserBean bean) throws Exception {
 		UserBean exist = findByLogin(bean.getLoginId());
-		if(exist!=null && exist.getId() == bean.getId()) {
+		if(exist!=null && exist.getId() != bean.getId()) {
 			throw new Exception("User Login id already Presant");
 		}
 		Connection conn = null;
