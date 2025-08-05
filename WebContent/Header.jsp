@@ -17,10 +17,10 @@
 		<h3>
 			Hi
 			<%=user.getFirstName() + " " + user.getLastName()%></h3>
-			<br> <b><a href="UserCtl">AddUsers</a></b> 
+			<br> <b><a href="UserCtl.do">AddUsers</a></b> 
 			|
 			<b><a
-			href="UserListCtl">UserList</a></b>
+			href="UserListCtl.do">UserList</a></b>
 				|
 			<b><a
 			href="LoginCtl?operation=Logout">Logout</a></b>

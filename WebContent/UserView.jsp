@@ -47,7 +47,7 @@
 		}
 		%>
 
-		<form action="UserCtl" method="post">
+		<form action="UserCtl.do" method="post">
 			<table>
 				<%
 				if (bean != null && bean.getId()!=null) {

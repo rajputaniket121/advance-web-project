@@ -38,7 +38,7 @@
 		<%
 		}
 		%>
-		<form action="UserListCtl" method="post">
+		<form action="UserListCtl.do" method="post">
 			<div align="center">
 				<table>
 					<tr>
@@ -53,7 +53,7 @@
 				<br> <br>
 			</div>
 			<table border="1" style="width: 100%">
-				<tr>
+				<tr align="center">
 				<th>Select</th>
 					<th>S.No.</th>
 					<th>FirstName</th>
@@ -78,7 +78,7 @@
 					<td><%=bean.getPassword()%></td>
 					<td><%=bean.getDob()%></td>
 					<td><%=bean.getAddress()%></td>
-					<td><a href="UserCtl?id=<%=bean.getId()%>">Edit</a></td>
+					<td><a href="UserCtl.do?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%
 				}

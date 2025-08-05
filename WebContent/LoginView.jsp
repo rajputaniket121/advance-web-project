@@ -12,6 +12,7 @@
 		<%
 		String success = (String) request.getAttribute("success");
 		String error = (String) request.getAttribute("error");
+		String uri = (String) request.getAttribute("uri");
 		%>
 		<h1>User Login</h1>
 		<%
@@ -51,6 +52,7 @@
 						name="operation"></input></td>
 				</tr>
 			</table>
+			<input type="hidden" name="uri" value="<%=uri%>">
 		</form>
 	</div>
 </body>

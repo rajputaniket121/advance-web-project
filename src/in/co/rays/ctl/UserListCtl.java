@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.co.rays.bean.UserBean;
 import in.co.rays.model.UserModel;
 
-@WebServlet("/UserListCtl")
+@WebServlet("/UserListCtl.do")
 public class UserListCtl extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,8 +26,13 @@ public class UserListCtl extends HttpServlet {
 		UserModel model = new UserModel();
 		try {
 			List<UserBean> userList = model.search(bean, pageNo, pageSize);
-			req.setAttribute("userList", userList);
-			req.setAttribute("pageNo", pageNo);
+			if(userList.size()>0) {
+				req.setAttribute("userList", userList);
+				req.setAttribute("pageNo", pageNo);
+			}else {
+				req.setAttribute("pageNo", pageNo);
+				req.setAttribute("error", "No Records Found");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,7 +54,7 @@ public class UserListCtl extends HttpServlet {
 			if (op.equalsIgnoreCase("previous")) {
 				pageNo--;
 			} else if (op.equalsIgnoreCase("add")) {
-				resp.sendRedirect("UserCtl");
+				resp.sendRedirect("UserCtl.do");
 				return;
 
 			} else if (op.equalsIgnoreCase("delete")) {
