@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Advance-web-project</title>
 </head>
 <body>
 <%@ include file="Header.jsp" %>
