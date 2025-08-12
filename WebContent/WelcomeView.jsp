@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="https://www.raystec.com/assets/img/rays/favicon.png">
 </head>
 <body>
 <%@ include file="Header.jsp" %>

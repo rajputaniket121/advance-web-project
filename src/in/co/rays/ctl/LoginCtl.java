@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import in.co.rays.bean.UserBean;
 import in.co.rays.model.UserModel;
 
-@WebServlet("/LoginCtl")
+@WebServlet(urlPatterns = {"/LoginCtl","/LoginPage"})
 public class LoginCtl extends HttpServlet {
 
 	@Override
