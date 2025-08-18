@@ -9,6 +9,7 @@
 		String success = (String) request.getAttribute("success");
 		String error = (String) request.getAttribute("error");
 		String uri = (String) request.getAttribute("uri");
+		String notValid = (String) request.getAttribute("notValid");
 		%>
 		<h1>User Login</h1>
 		<%
@@ -35,6 +36,12 @@
 					<th>Login Id :</th>
 					<td><input type="text" name="loginId"></input></td>
 				</tr>
+				<%if(notValid!=null){ %>
+				<tr>
+					<th></th>
+					<td><p style="color: red"><%=notValid %></p></input></td>
+				</tr>
+				<%} %>
 				<tr>
 					<th>Password :</th>
 					<td><input type="password" name="password"></input></td>

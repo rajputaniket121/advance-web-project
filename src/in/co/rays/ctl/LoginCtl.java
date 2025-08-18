@@ -15,6 +15,25 @@ import in.co.rays.model.UserModel;
 
 @WebServlet(urlPatterns = {"/LoginCtl","/LoginPage"})
 public class LoginCtl extends HttpServlet {
+	
+	
+//	@Override
+//	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		String loginId = req.getParameter("loginId");
+//		String password = req.getParameter("password");
+//		String validId = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+//		if(loginId!=null&&password!=null) {
+//			if(loginId.equals(validId) && !loginId.isEmpty()&&!password.isEmpty()) {
+//				req.setAttribute("notValid", "Invalid Format");
+//				RequestDispatcher rd = req.getRequestDispatcher("LoginView.jsp");
+//				rd.forward(req, resp);
+//				
+//			}
+//			
+//		}
+//		super.service(req, resp);
+//		
+//	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
